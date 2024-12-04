@@ -23,4 +23,10 @@
     <data name="NoNameWasSpecifiedForFileField" xml:space="preserve">
         <value>No se especificó un nombre para el campo de tipo archivo.</value>
     </data>
+    <data name="FileChunkIsEmpty" xml:space="preserve">
+        <value>La porción del archivo está vacía.</value>
+    </data>
+    <data name="ChunkDirectoryNotFoundStartUploadFromTheBeginning" xml:space="preserve">
+        <value>No se encontró la carpeta para cargas parciales de archivos, inicie la carga de nuevo.</value>
+    </data>
 </root>

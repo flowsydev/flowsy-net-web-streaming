@@ -30,4 +30,10 @@
     <data name="NoNameWasSpecifiedForFileField" xml:space="preserve">
         <value>No name was specified for file field.</value>
     </data>
+    <data name="FileChunkIsEmpty" xml:space="preserve">
+        <value>File chunk is empty</value>
+    </data>
+    <data name="ChunkDirectoryNotFoundStartUploadFromTheBeginning" xml:space="preserve">
+        <value>Chunk directory not found, start upload from the beginning.</value>
+    </data>
 </root>

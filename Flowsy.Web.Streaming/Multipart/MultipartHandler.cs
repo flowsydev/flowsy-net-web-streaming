@@ -4,6 +4,7 @@ using Flowsy.Web.Streaming.Buffering;
 using Flowsy.Web.Streaming.Resources;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.Extensions.Options;
 using Microsoft.Net.Http.Headers;
 
 namespace Flowsy.Web.Streaming.Multipart;
@@ -11,21 +12,17 @@ namespace Flowsy.Web.Streaming.Multipart;
 /// <summary>
 /// Handles multipart requests.
 /// </summary>
-public class MultipartHandler
+public class MultipartHandler : IMultipartHandler
 {
     private readonly IBufferingProvider? _bufferingProvider;
     private readonly IContentInspector? _contentInspector;
-    private readonly IEnumerable<string> _allowedMimeTypes;
+    private readonly MultipartHandlerOptions? _options;
 
-    public MultipartHandler(
-        IBufferingProvider? bufferingProvider,
-        IContentInspector? contentInspector,
-        IEnumerable<string>? allowedMimeTypes
-        )
+    public MultipartHandler(IBufferingProvider? bufferingProvider = null, IContentInspector? contentInspector = null, IOptions<MultipartHandlerOptions>? options = null)
     {
         _bufferingProvider = bufferingProvider;
         _contentInspector = contentInspector;
-        _allowedMimeTypes = allowedMimeTypes ?? Array.Empty<string>();
+        _options = options?.Value;
     }
 
     /// <summary>
@@ -102,9 +99,9 @@ public class MultipartHandler
                         contentDescriptor.ModificationDate = contentDisposition.ModificationDate?.DateTime;
                         contentDescriptor.ReadDate = contentDisposition.ReadDate?.DateTime;
 
-                        if (_allowedMimeTypes.Any())
+                        if (_options?.AllowedMimeTypes.Any() ?? false)
                         {
-                            var intersection = contentDescriptor.MimeTypes.Intersect(_allowedMimeTypes);
+                            var intersection = contentDescriptor.MimeTypes.Intersect(_options.AllowedMimeTypes);
                             if (!intersection.Any())
                             {
                                 invalidFiles.Add(contentDisposition.FileName.Value);

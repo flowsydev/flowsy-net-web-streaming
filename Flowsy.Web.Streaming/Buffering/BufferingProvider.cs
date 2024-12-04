@@ -8,7 +8,7 @@ public class BufferingProvider : IBufferingProvider
 {
     private readonly FileBufferingOptions? _fileBufferingOptions;
 
-    public BufferingProvider(IOptions<FileBufferingOptions>? fileBufferingOptions)
+    public BufferingProvider(IOptions<FileBufferingOptions>? fileBufferingOptions = null)
     {
         _fileBufferingOptions = fileBufferingOptions?.Value;
     }

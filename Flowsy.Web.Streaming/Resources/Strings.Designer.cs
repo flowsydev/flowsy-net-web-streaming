@@ -68,5 +68,17 @@ namespace Flowsy.Web.Streaming.Resources {
                 return ResourceManager.GetString("NoNameWasSpecifiedForFileField", resourceCulture);
             }
         }
+        
+        internal static string FileChunkIsEmpty {
+            get {
+                return ResourceManager.GetString("FileChunkIsEmpty", resourceCulture);
+            }
+        }
+        
+        internal static string ChunkDirectoryNotFoundStartUploadFromTheBeginning {
+            get {
+                return ResourceManager.GetString("ChunkDirectoryNotFoundStartUploadFromTheBeginning", resourceCulture);
+            }
+        }
     }
 }
